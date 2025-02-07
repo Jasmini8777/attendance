@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+
+    <label></label>
+    <!-- Navbar -->
+    <div class="navbar">
+        
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search employees or records...">
+            <button id="searchButton">Search</button>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h1>Admin Dashboard</h1>
+            <ul>
+                <li><a href="#home" id="home">Home</a></li>
+                <li><a href="#addEmployees" id="addEmployees">Add Employees</a></li>
+                <li><a href="#markAttendance" id="markAttendance">Mark Attendance</a></li>
+                <li><a href="#department" id="department">Department</a></li>
+                
+                <li><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </div>
+       <!--------------------- Home Section to Display Employees ------------------------>
+       <div id="home-section" class="content-section">
+        <h2>Employee List</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>employee_ID</th>
+                    <th>First_Name</th>
+                    <th>Last_Name</th>
+                    <th>Email</th>
+                    
+                    <th>hire_date</th>
+                    <th>department_id</th>
+                    <th>shift_id</th>
+                    <th>role</th>
+                   
+                    
+                </tr>
+            </thead>
+            <tbody id="employee-data">
+                <!------------------- Employee data will be dynamically populated here ---------------->
+            </tbody>
+        </table>
+    </div>
+    <div id="addEmployees-section" class="content-section" style="display: none;">
+    <form id="addEmployeeForm">
+       
+
+        <label for="first_name">First Name:</label><br>
+                <input type="text" id="first_name" name="first_name" required><br><br>
+
+                <label for="last_name">Last Name:</label><br>
+                <input type="text" id="last_name" name="last_name" required><br><br>
+
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" required><br><br>
+
+                <label for="hire_date">Hire Date:</label><br>
+                <input type="date" id="hire_date" name="hire_date" required><br><br>
+
+                <label for="department_id">Department ID:</label><br>
+                <input type="number" id="department_id" name="department_id" required><br><br>
+
+                <label for="shift_id">Shift ID:</label><br>
+                <input type="number" id="shift_id" name="shift_id" required><br><br>
+
+                <label for="role">Role:</label><br>
+                <input type="name" id="role" name="role" required><br><br>
+
+                <button type="submit">Add Employee</button>
+    </form>
+</div>
+
+<!------------------------------------- Department Section ---------------------------------------------->
+<div id="department-section" class="content-section" style="display: none;">
+    <h2>Departments</h2>
+<button id="add-department-button">Add Department</button>
+
+    <!-- Add Department Form (Initially Hidden) -->
+    <div id="add-department-form-container" style="display: none; margin-top: 10px;">
+        <h3>Add Department</h3>
+        <form id="add-department-form">
+            <label for="name">Department Name:</label>
+            <input type="text" id="name" name="name" required>
+            <button type="submit">Add Department</button> 
+        </form>
+    </div>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Department ID</th>
+                <th> Name</th>
+            </tr>
+        </thead>
+        <tbody id="department-data">
+            <!-- Department data will be dynamically populated here -->
+        </tbody>
+    </table>
+</div>
+
+<!-------------------------MARK ATTENDANCE  --------------------->
+
+<div id="mark-attendance-section" class="content-section" style="display: none;">
+    <h2>Mark Attendance</h2>
+    <form id="attendanceForm">
+        <label for="employeeId">Employee ID:</label>
+        <input type="number" id="employeeId" name="employeeId" required><br><br>
+        <label for="attendanceDate">Date:</label>
+        <input type="date" id="attendanceDate" name="attendanceDate" required><br><br>
+
+        <button type="button" id="markAttendanceBtn">Mark Attendance</button>
+    </form>
+    <br>
+    <h2>Attendance Records</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Attendance ID</th>
+                <th>Employee ID</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Location ID</th>
+            </tr>
+        </thead>
+        <tbody id="attendanceData">
+            <!-- Attendance data will be dynamically added here -->
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+<script>
+// Function to toggle sections
+function showSection(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('.content-section').forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // Show the selected section
+    document.getElementById(sectionId).style.display = 'block';
+}
+
+// Add event listeners to sidebar buttons
+document.getElementById('home').addEventListener('click', () => {
+    showSection('home-section');
+    fetchEmployees(); // Load employee data when Home is selected
+});
+
+document.getElementById('addEmployees').addEventListener('click', () => {
+    showSection('addEmployees-section');
+});
+
+document.getElementById('department').addEventListener('click', () => {
+            showSection('department-section');
+            fetchDepartments(); // Load department data when Department is selected
+        });
+
+        document.getElementById('markAttendance').addEventListener('click', () => {
+    showSection('mark-attendance-section');
+});
+   
+
+//////////////////////////////////// Handle Add Employee Form Submission
+document.getElementById('addEmployeeForm').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    
+    const first_name = document.getElementById('first_name').value;
+    const last_name = document.getElementById('last_name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const hire_date = document.getElementById('hire_date').value;
+    const department_id = document.getElementById('department_id').value;
+    const shift_id = document.getElementById('shift_id').value;
+    const role = document.getElementById('role').value;
+    
+    try {
+        const response = await fetch('http://localhost:3003/add-employee', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                
+                
+                first_name,
+                last_name,
+                email,
+                password,
+                hire_date,
+                department_id,
+                shift_id,
+                role,
+                
+            }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert('Employee added successfully');
+            showSection('home-section'); // Redirect to Home section
+            await fetchEmployees(); // Refresh employee data
+        } else {
+            alert('Failed to add employee');
+        }
+    } catch (error) {
+        console.error('Error adding employee:', error);
+        alert('There was an error adding the employee.');
+    }
+});
+
+//////////////////////////////////////// Fetch employees from the database and populate the table
+async function fetchEmployees() {
+    try {
+        const response = await fetch('http://localhost:3003/employees'); // Call the backend API
+        if (!response.ok) throw new Error('Failed to fetch employees'); // Check for response errors
+
+        const data = await response.json();
+        console.log('Fetched employee data:', data); 
+
+        const employeeTable = document.getElementById('employee-data');
+        if (!data || data.length === 0) {
+            employeeTable.innerHTML = '<tr><td colspan="9">No employees found.</td></tr>';
+        } else {
+            // Populate employee data
+            employeeTable.innerHTML = data.map(employee => `
+                <tr>
+                    <td>${employee.employee_id}</td>
+                    <td>${employee.first_name}</td>
+                    <td>${employee.last_name}</td>
+                    <td>${employee.email}</td> 
+                                  
+                    <td>${employee.hire_date}</td>
+                    <td>${employee.department_id}</td>
+                    <td>${employee.shift_id}</td>
+                    <td>${employee.role}</td>
+                    
+                    
+                </tr>
+            `).join('');
+        }
+    } catch (error) { 
+        console.error('Error fetching employees:', error);
+        alert('Error fetching employee data.');
+    }
+}
+
+
+//////////////////////////////////// Fetch departments from the database and populate the table
+async function fetchDepartments() {
+            try {
+                const response = await fetch('http://localhost:3003/department'); // Call the backend API
+                if (!response.ok) throw new Error('Failed to fetch departments'); // Check for response errors
+
+                const data = await response.json();
+
+                const departmentTable = document.getElementById('department-data');
+                if (!data || data.length === 0) {
+                    departmentTable.innerHTML = '<tr><td colspan="2">No departments found.</td></tr>';
+                } else {
+                    // Populate department data
+                    departmentTable.innerHTML = data.map(department => `
+                        <tr>
+                            <td>${department.department_id}</td>
+                            <td>${department.name}</td>
+                        </tr>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error fetching departments:', error);
+                alert('Error fetching department data.');
+            }
+        }
+      //////////////// Show "Add Department" form
+document.getElementById('add-department-button').addEventListener('click', () => {
+    const formContainer = document.getElementById('add-department-form-container');
+    formContainer.style.display = formContainer.style.display === 'none' ? 'block' : 'none';
+});
+
+// Handle "Add Department" form submission
+document.getElementById('add-department-form').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    const name = document.getElementById('name').value;
+
+    try {
+        const response = await fetch('http://localhost:3003/add-department', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name }),
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            alert('Department added successfully!');
+            document.getElementById('add-department-form-container').style.display = 'none'; // Hide the form
+            document.getElementById('name').value = ''; // Clear the input field
+            fetchDepartments(); // Refresh department list
+        } else {
+            alert('Failed to add department');
+        }
+    } catch (error) {
+        console.error('Error adding department:', error);
+        alert('There was an error adding the department.');
+    }
+});
+  
+/////////////////////// Mark Attendance////////////////////////
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("markAttendanceBtn").addEventListener("click", () => {
+        const employeeId = document.getElementById("employeeId").value;
+
+        if (!employeeId) {
+            alert("Please enter your Employee ID.");
+            return;
+        }
+
+        const button = document.getElementById("markAttendanceBtn");
+        button.disabled = true;
+
+        // Get the current location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    // Send data to the server
+                    fetch("http://localhost:3003/markAttendance", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ employeeId, latitude, longitude }),
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            alert(data.message);
+                            button.disabled = false;
+                        })
+                        .catch((error) => {
+                            console.error("Error:", error);
+                            alert("An error occurred while marking attendance.");
+                            button.disabled = false;
+                        });
+                },
+                (error) => {
+                    alert("Unable to retrieve location. Please enable location services.");
+                    button.disabled = false;
+                }
+            );
+        } else {
+            alert("Geolocation is not supported by this browser.");
+            button.disabled = false;
+        }
+    });
+});
+
+document.getElementById("markAttendance").addEventListener("click", () => {
+    showSection("mark-attendance-section"); // Display the Mark Attendance section
+    fetchAttendanceRecords(); // Fetch attendance records and display the table
+});
+
+async function fetchAttendanceRecords() {
+    try {
+        const response = await fetch("http://localhost:3003/api/attendance"); // Call your API endpoint
+        if (!response.ok) throw new Error("Failed to fetch attendance data");
+
+        const data = await response.json();
+
+        const table = document.getElementById("attendanceTable");
+        const tableBody = document.getElementById("attendanceData");
+
+        if (!data || data.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="5">No attendance records found.</td></tr>';
+        } else {
+            tableBody.innerHTML = data.map(record => `
+                <tr>
+                    <td>${record.attendance_id}</td>
+                    <td>${record.employee_id}</td>
+                    <td>${record.date}</td>
+                    <td>${record.status}</td>
+                    <td>${record.location_id}</td>
+                </tr>
+            `).join('');
+        }
+
+        table.style.display = "table"; // Show the table after populating it
+    } catch (error) {
+        console.error("Error fetching attendance data:", error);
+        
+    }
+}
+
+
+
+
+
+
+// Ensure only the Home section is displayed on page load
+window.onload = () => {
+    showSection('home-section'); // Default to Home section
+    fetchEmployees(); // Load employees table data
+};
+</script>
+</body>
+</html> 
+ 
+    <script>
+        function logout() {
+            alert("You have been logged out!");
+            window.location.href = "index.html";
+        }
+        
+    </script>
+    <script src="app.js"></script>
+    <script>
+        // Function to set active class
+        function setActiveLink() {
+            const links = document.querySelectorAll('.sidebar ul li a');
+            links.forEach(link => {
+                link.classList.remove('active'); // Remove active class from all links
+            });
+
+            // Get the current hash from the URL
+            const currentHash = window.location.hash;
+
+            // Find the link that matches the current hash and set it as active
+            const activeLink = document.querySelector(`a[href="${currentHash}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        // Run the function on page load
+        window.addEventListener('load', setActiveLink);
+
+        // Run the function whenever the hash changes
+        window.addEventListener('hashchange', setActiveLink);
+    </script>
+</body>
+</html>

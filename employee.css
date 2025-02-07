@@ -1,0 +1,335 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 0;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    position: fixed; /* Fixes the navbar to the top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width of the page */
+    z-index: 1000; /* Ensures it's above other content */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better appearance */
+}
+
+/* Navbar Title */
+.navbar h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Navbar Links */
+.navbar-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px; /* Spacing between items */
+}
+
+.navbar-links li {
+    display: inline;
+}
+
+.navbar-links button {
+    background-color: white;
+    color: #007bff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-links button:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+/* Content Area */
+.content {
+    margin-top: 100px; /* Adds space to account for the fixed navbar height */
+    padding: 20px;
+    text-align: center;
+}
+
+#attendanceData {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar h1 {
+        font-size: 18px;
+    }
+
+    .navbar-links button {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+    .content {
+        margin-top: 100px; /* Adjust based on navbar height */
+    }
+}
+
+/* Form Container Styling */
+.attendance-form-container {
+   
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Ensure form appears above other content */
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+/* Form Title Styling */
+.attendance-form-container h2 {
+    margin: 0;
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Label Styling */
+.attendance-form-container label {
+    display: none;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    text-align: left;
+    margin-left: 10px;
+}
+
+/* Input Field Styling */
+.attendance-form-container input[type="text"],
+.attendance-form-container input[type="datetime-local"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Submit and Cancel Button Styling */
+.attendance-form-container button {
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    
+}
+
+/* Submit Button Styling */
+.attendance-form-container button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+}
+
+.attendance-form-container button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Cancel Button Styling */
+.attendance-form-container button[type="button"] {
+    background-color: #ccc;
+    color: black;
+    margin-left: 10px;
+}
+
+.attendance-form-container button[type="button"]:hover {
+    background-color: #999;
+}
+
+/* Styling for form elements when focused */
+.attendance-form-container input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Styling for form buttons when focused */
+.attendance-form-container button:focus {
+    outline: none;
+}
+
+/* Profile Section Styles */
+.content-section {
+    background-color: #f4f4f9;  /* Light background color */
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+span {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Profile Section Header */
+#profile {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;  /* Limits the width of the profile box */
+    margin: auto;
+    margin-top: 30px;
+}
+
+/* Add spacing for better layout */
+#profile p {
+    margin-bottom: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Adjust profile width and padding for tablets and mobile */
+    #profile {
+        padding: 15px;
+        max-width: 90%;  /* More space on smaller screens */
+    }
+
+    h3 {
+        font-size: 20px;  /* Smaller title on smaller screens */
+    }
+
+    p {
+        font-size: 16px;  /* Slightly smaller text for better readability */
+    }
+
+    span {
+        font-size: 16px;  /* Adjust span size */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further adjustments for very small screens (phones) */
+    #profile {
+        max-width: 100%;  /* Full width for very small screens */
+        padding: 10px;  /* Less padding */
+    }
+
+    h3 {
+        font-size: 18px;  /* Even smaller title */
+    }
+
+    p {
+        font-size: 14px;  /* Adjust text size for very small screens */
+    }
+
+    span {
+        font-size: 14px;  /* Adjust span size for readability */
+    }
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+td {
+    background-color: #f9f9f9;
+}
+
+#attendanceData {
+    margin: 20px;
+    display: block; /* initially hidden, will show when data is available */
+}
+
+/* Responsive Table Styles */
+@media screen and (max-width: 600px) {
+    table {
+        width: 100%;
+        font-size: 14px;
+    }
+    
+    th, td {
+        padding: 8px;
+        
+    }
+    
+    /* Stack table headings on top of data rows for small screens */
+    tr {
+        display: block;
+        margin-bottom: 10px;
+
+    }
+    
+
+    
+    
+    td {
+        display: block;
+        width: 40%;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+    
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        font-weight: bold;
+    
+    }
+}

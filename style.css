@@ -1,0 +1,623 @@
+
+/* Body Styling */
+body {
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+.logo{
+    width: 250px;
+    padding:30px;
+    margin-top: 100px;
+    padding-left:60px;
+    padding-bottom: 60px;
+}
+
+h1{
+    color: #333;
+    padding-bottom: 0px;
+    padding-left: 30px;
+    
+}
+
+/* Login Container */
+.login-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.login-container form {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-container label {
+    text-align: left;
+    color: #555;
+    font-size: 14px;
+}
+
+.login-container input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.login-container button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-container button:hover {
+    background-color: #0056b3;
+}
+
+.extra-options {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.extra-options a {
+    color: #007BFF;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.extra-options a:hover {
+    text-decoration: underline;
+}
+
+#error-msg {
+    margin-top: 10px;
+    font-size: 14px;
+    color: red;
+}
+
+/* General Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* On top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+    display: flex; /* Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Adjust width */
+    max-width: 400px; /* Limit maximum width */
+    border-radius: 6px;
+
+    position: relative; /* For close button positioning */
+    overflow: hidden; /* Prevent form from overflowing */
+}
+
+/* Modal Close Button */
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #b9aeae;
+    transition: color 0.3s ease;
+}
+
+.modal-content .close:hover {
+    color: #000;
+}
+
+/* Header Styling */
+.modal-content h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Form Styles */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.modal-content label {
+    text-align: left;
+    color: #555;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.modal-content input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%; /* Full width inside form */
+    box-sizing: border-box; /* Prevent overflow */
+    display: block;
+}
+
+.modal-content input:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Button Styles */
+.modal-content button {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Full width button */
+}
+
+.modal-content button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%; /* Adjust width for smaller screens */
+        padding: 15px;
+    }
+
+    .modal-content h2 {
+        font-size: 18px;
+    }
+
+    .modal-content input,
+    .modal-content button {
+        font-size: 14px;
+    }
+}
+
+
+/* ADMIN/DASHBOARD */
+.search-bar{
+    background-color: #007BFF; /* Dark Blue */
+    color: white;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.search-bar input {
+    padding: 8px;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 300px;
+}
+
+.search-bar button {
+    padding: 8px 15px;
+    background-color: #0d0f0d; /* Teal Green */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #6ce2ed; /* Darker Teal */
+}
+/* Sidebar */
+
+.sidebar {
+    width: 250px;
+    background-color: #007BFF; /* Dark Blue */
+    color: white;
+    height: 100vh;
+    padding: 20px 0;
+    position: fixed;
+    top: 50px; /* Adjust for navbar height */
+    left: 0;
+    overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.sidebar h1 {
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+    color: #000;
+}
+
+.sidebar ul li a {
+    color: rgb(18, 16, 16);
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a.active {
+    background-color: #c9ecf9;
+    color: #5919ed;
+    
+}
+
+.sidebar ul li a:hover {
+    background-color: #fbf4f4 ; /* Teal Green */
+}
+
+
+
+
+/* Section Styling */
+#home-section, #addEmployees-section, #markAttendance-section, #settings-section {
+    display: none;
+}
+
+#home-section {
+    display: block;
+}
+
+
+#employee-data table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#employee-data th, #employee-data td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#employee-data th {
+    background-color: #f2f2f2;
+}
+
+#employee-data tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+    /* Content Section (for Employee List) */
+    h2{
+        font-size: 24px;
+        text-align: center;
+        padding: 10px;
+    }
+    
+.content-section {
+    margin-top: 20px;
+}
+
+table {
+    table-layout: auto;
+    width: 60%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    
+}
+
+th, td {
+    padding: 2px 5px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+td {
+    background-color: #f9f9f9;
+}
+
+
+/* General Styling for Content Sections */
+.content-section {
+    margin: 20px;
+    padding: 50px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Heading */
+.content-section h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Buttons */
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Add Department Button */
+#add-department-button {
+    display: block;
+    margin: 10px auto;
+    width: 150px;
+}
+
+/* Add Department Form Styling */
+#add-department-form-container {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 15px;
+    margin-top: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#add-department-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+#add-department-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead th {
+    background-color: #007bff;
+    color: #fff;
+    padding: 6px;
+    
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+}
+
+tbody td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Table Header and Data Styling */
+th, td {
+    text-align: left;
+    padding: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 100px;
+    }
+
+    .content-section {
+        margin-left: 220px;
+    }
+
+    table th, table td {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: absolute;
+        height: auto;
+        width: 100%;
+        top: 70px;
+    }
+
+    .sidebar h1{
+        margin-top: 30px;
+    }
+
+    .content-section {
+        margin-left: 450px;
+        margin-top: 120px;
+    }
+
+    .search-bar {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .search-bar input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 6px 10px;
+        font-size: 12px;
+        width: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar ul li a {
+        font-size: 14px;
+        padding: 8px 15px;
+        
+    }
+
+    .content-section h2 {
+        font-size: 18px;
+        margin-top: 200px;
+        
+    }
+    
+}
+
+
+
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    #mark-attendance-section {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    input[type="number"],
+    input[type="date"] {
+        font-size: 14px;
+        padding: 6px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    #mark-attendance-section {
+        max-width: 90%;
+        padding: 100px;
+        margin-top: 500px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    input[type="number"],
+    input[type="date"] {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 10px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    #addEmployees-section {
+        max-width: 90%;
+        padding: 10px;
+        margin-top: 800px;
+    }
+
+    label {
+        font-size: 12px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"],
+    input[type="number"] {
+        font-size: 12px;
+        padding: 5px;
+        
+    }
+
+    button {
+        font-size: 12px;
+        padding: 6px;
+    }
+}

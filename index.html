@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="logo.png" alt="Company logo" class="logo">
+        </div>
+        <h1>Welcome To CareerNaksha</h1>
+      </div>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="username or Email">Username or Email:</label>
+            <input type="text" id="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            <button type="submit">Login</button>
+        </form>
+        <div class="extra-options">
+            <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+            
+        </div>
+        <p id="error-msg"></p>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal" id="forgotPasswordModal">
+        <div class="modal-content">
+            <span class="close" id="closeForgotPassword">&times;</span>
+            <h2>Reset Password</h2>
+            <form id="resetPasswordForm">
+                <label for="resetUsernameEmail">Username or Email:</label>
+                <input type="text" id="resetUsernameEmail" required>
+                <label for="newPassword">New Password:</label>
+                <input type="password" id="newPassword" required>
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="ConfirmPassword" required>
+                <button type="submit">Reset Password</button>
+            </form>
+        </div>
+    </div>
+
+   
+        
+    </div>
+
+
+    <!-- <script>
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault();  // Prevent form submission
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Send login data to the server
+            fetch('http://localhost:3003/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Server Response:", data); 
+                console.log('Username:', username, 'Password:', password); 
+                if (data.user) {
+                    // Store user data in sessionStorage
+                    sessionStorage.setItem('loggedInUser', JSON.stringify({
+                employee_id: data.user.employee_id,  // Store Employee ID
+                first_name: data.user.first_name,
+                last_name: data.user.last_name,
+                email: data.user.email,
+                department_id: data.user.department_id,
+                shift_id: data.user.shift_id,
+                hire_date: data.user.hire_date,
+            }));
+
+                    // Redirect to employee dashboard
+                    window.location.href = "employee.html";
+                } else {
+                    // Show error message
+                    document.getElementById("error-msg").innerText = "Invalid username or password!";
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                document.getElementById("error-msg").innerText = "Server error. Please try again later.";
+            });
+        });
+    </script> -->
+    <script src="app.js"></script>
+</body>
+</html>
+
+
