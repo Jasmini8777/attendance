@@ -12,7 +12,7 @@ const app = express();
 
 // Use middleware
 app.use(bodyParser.json()); // For parsing application/json
-app.use(cors()); // Enable CORS for all routes
+app.use(cors({origin:"*"})); // Enable CORS for all routes
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
