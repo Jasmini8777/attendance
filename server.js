@@ -371,6 +371,6 @@ app.get('/viewAttendance/:employeeId', (req, res) => {
     
 
 // Start Server
-app.listen(3004, () => {
-    console.log('Server running at http://localhost:3004');
+app.listen(3003, () => {
+    console.log('Server running at http://localhost:3003');
 });
